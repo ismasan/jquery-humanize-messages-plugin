@@ -5,7 +5,6 @@
  *
  * Requires: jQuery 1.2+
  *
- ****** CURRENTLY ONLY TESTED IN FF and Safari 3 *******
  */
 
 (function($) {
@@ -19,14 +18,14 @@
 		};
 		$.humanize.mouseCatch = o.movementThreshold;
 		$(o.baseSelector).css('opacity',0)
-		.animate({opacity:o.opacity},o.fadeIn);
+      .animate({opacity:o.opacity},o.fadeIn);
 		$(document).mousemove($.humanize.remove).click($.humanize.remove).keypress($.humanize.remove)
 	};
 	$.humanize.defaults = {
 		baseSelector : '.feedback',
 		container : '<p class="feedback">&nbsp;</p>',
-		fadeIn : {easing:'swing', duration:1000},
-		fadeOut : {easing:'swing', duration:1000,complete:function(){$(this).remove()}},
+		fadeIn : 1000,
+		fadeOut : 1000,
 		opacity : 0.7,
 		movementThreshold : 3
 	};
@@ -38,7 +37,7 @@
 		};
 		var o = $.humanize.defaults;
 			$(o.baseSelector)
-			.animate({opacity:0},o.fadeOut);
+        .animate({opacity:0},o.fadeOut, function(){$(this).remove()});
 			$(document)
 				.unbind('mousemove',$.humanize.remove)
 				.unbind('click',$.humanize.remove)
